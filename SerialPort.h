@@ -15,34 +15,34 @@
 ************************************************************************************
 **  author: mrlong date:2007-12-25
 **
-**  ¸Ä½ø
-**	1) Ôö¼Ó ClosePort
-**	2) Ôö¼Ó WriteToPort Á½¸ö·½·¨
-**	3) Ôö¼Ó SendData Óë RecvData ·½·¨
+**  æ”¹è¿›
+**	1) å¢žåŠ  ClosePort
+**	2) å¢žåŠ  WriteToPort ä¸¤ä¸ªæ–¹æ³•
+**	3) å¢žåŠ  SendData ä¸Ž RecvData æ–¹æ³•
 ************************************************************************************
 ************************************************************************************
-**  author£ºliquanhai date:2011-11-04
+**  authorï¼šliquanhai date:2011-11-04
 **
-**  ¸Ä½ø
-**	1) Ôö¼Ó ClosePort ÖÐ½»³ö¿ØÖÆÈ¨£¬·ÀÖ¹ËÀËøÎÊÌâ
-**	2) Ôö¼Ó ReceiveChar ÖÐ·ÀÖ¹Ïß³ÌËÀËø
+**  æ”¹è¿›
+**	1) å¢žåŠ  ClosePort ä¸­äº¤å‡ºæŽ§åˆ¶æƒï¼Œé˜²æ­¢æ­»é”é—®é¢˜
+**	2) å¢žåŠ  ReceiveChar ä¸­é˜²æ­¢çº¿ç¨‹æ­»é”
 ************************************************************************************
 ************************************************************************************
-**  author£ºviruscamp date:2013-12-04
+**  authorï¼šviruscamp date:2013-12-04
 **
-**  ¸Ä½ø
-**	1) Ôö¼Ó IsOpen ÅÐ¶ÏÊÇ·ñ´ò¿ª
-**	2) ÐÞÕý InitPort ÖÐ parity Odd Even ²ÎÊýÈ¡Öµ´íÎó
-**	3) ÐÞ¸Ä InitPort ÖÐ portnr È¡Öµ·¶Î§£¬portnr>9 Ê±ÌØÊâ´¦Àí
-**	4) È¡Ïû¶Ô MFC µÄÒÀÀµ£¬Ê¹ÓÃ HWND Ìæ´ú CWnd£¬Ê¹ÓÃ win32 thread º¯Êý¶ø²»ÊÇ MFC µÄ
-**	5) Ôö¼ÓÓÃ»§ÏûÏ¢±àºÅ×Ô¶¨Òå£¬·½·¨À´×Ô CnComm
+**  æ”¹è¿›
+**	1) å¢žåŠ  IsOpen åˆ¤æ–­æ˜¯å¦æ‰“å¼€
+**	2) ä¿®æ­£ InitPort ä¸­ parity Odd Even å‚æ•°å–å€¼é”™è¯¯
+**	3) ä¿®æ”¹ InitPort ä¸­ portnr å–å€¼èŒƒå›´ï¼Œportnr>9 æ—¶ç‰¹æ®Šå¤„ç†
+**	4) å–æ¶ˆå¯¹ MFC çš„ä¾èµ–ï¼Œä½¿ç”¨ HWND æ›¿ä»£ CWndï¼Œä½¿ç”¨ win32 thread å‡½æ•°è€Œä¸æ˜¯ MFC çš„
+**	5) å¢žåŠ ç”¨æˆ·æ¶ˆæ¯ç¼–å·è‡ªå®šä¹‰ï¼Œæ–¹æ³•æ¥è‡ª CnComm
 */
 
 #ifndef __SERIALPORT_H__
 #define __SERIALPORT_H__
 
 #ifndef WM_COMM_MSG_BASE 
-	#define WM_COMM_MSG_BASE		WM_USER + 617		//!< ÏûÏ¢±àºÅµÄ»ùµã  
+	#define WM_COMM_MSG_BASE		WM_USER + 617		//!< æ¶ˆæ¯ç¼–å·çš„åŸºç‚¹  
 #endif
 
 #define WM_COMM_BREAK_DETECTED		WM_COMM_MSG_BASE + 1	// A break was detected on input.
@@ -89,8 +89,8 @@ public:
 	void		ClosePort();					 // add by mrlong 2007-12-2  
 	BOOL		IsOpen();
 
-	void SendData(LPCTSTR lpszData, const int nLength);   //´®¿Ú·¢ËÍº¯Êý by mrlong 2008-2-15
-	BOOL RecvData(LPTSTR lpszData, const int nSize);	  //´®¿Ú½ÓÊÕº¯Êý by mrlong 2008-2-15
+	void SendData(LPCTSTR lpszData, const int nLength);   //ä¸²å£å‘é€å‡½æ•° by mrlong 2008-2-15
+	BOOL RecvData(LPTSTR lpszData, const int nSize);	  //ä¸²å£æŽ¥æ”¶å‡½æ•° by mrlong 2008-2-15
 
 protected:
 	// protected memberfunctions
@@ -108,11 +108,11 @@ protected:
 	BOOL				m_bThreadAlive;
 
 	// handles
-	HANDLE				m_hShutdownEvent;  //stop·¢ÉúµÄÊÂ¼þ
+	HANDLE				m_hShutdownEvent;  //stopå‘ç”Ÿçš„äº‹ä»¶
 	HANDLE				m_hComm;		   // read  
 	HANDLE				m_hWriteEvent;	 // write
 
-	// Event array. 
+	// Event array. Really 
 	// One element is used for each event. There are two event handles for each port.
 	// A Write event and a receive character event which is located in the overlapped structure (m_ov.hEvent).
 	// There is a general shutdown when the port is closed. 
